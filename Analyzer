@@ -1,0 +1,82 @@
+# DNA SEQUENCE ANALYZER
+
+print("================================")
+print("      DNA SEQUENCE ANALYZER")
+print("================================")
+
+# Step 1: Take DNA sequence from user
+
+dna = input("Enter your DNA sequence: ")
+
+# Step 2: Clean the sequence
+dna = dna.upper()
+dna = "".join(dna.split())
+
+# Step 3: Validate DNA sequence
+
+valid_bases = ["A", "T", "G", "C"]
+
+if len(dna) == 0:
+    print("Error: DNA sequence is empty.")
+
+elif any(base not in valid_bases for base in dna):
+    print("Error: Invalid DNA sequence.")
+    print("Only A, T, G and C are allowed.")
+
+else:
+
+    # Step 4: Calculate sequence length
+    length = len(dna)
+
+    # Step 5: Count nucleotides
+    A = dna.count("A")
+    T = dna.count("T")
+    G = dna.count("G")
+    C = dna.count("C")
+
+    # Step 6: Calculate GC percentage
+    gc_percentage = ((G + C) / length) * 100
+
+    # Step 7: Calculate AT percentage
+    at_percentage = ((A + T) / length) * 100
+
+    # Step 8: Find complementary DNA
+    complement = ""
+
+    for base in dna:
+        if base == "A":
+            complement += "T"
+        elif base == "T":
+            complement += "A"
+        elif base == "G":
+            complement += "C"
+        elif base == "C":
+            complement += "G"
+
+    # Step 9: Find reverse complement
+    reverse_complement = complement[::-1]
+
+    # Step 10: Transcribe DNA into RNA
+    rna = dna.replace("T", "U")
+
+    # Step 11: Display results
+    print("\n========== RESULTS ==========")
+
+    print("DNA Sequence:", dna)
+    print("Sequence Length:", length)
+
+    print("\nNucleotide Count:")
+    print("Adenine (A):", A)
+    print("Thymine (T):", T)
+    print("Guanine (G):", G)
+    print("Cytosine (C):", C)
+
+    print("\nGC Content:", round(gc_percentage, 2), "%")
+    print("AT Content:", round(at_percentage, 2), "%")
+
+    print("\nComplementary DNA:", complement)
+    print("Reverse Complement:", reverse_complement)
+    print("RNA Sequence:", rna)
+
+    print("\n==============================")
+    print("Analysis Completed Successfully!")
